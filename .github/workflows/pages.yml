@@ -18,6 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
       - name: Finalize
         env:
           AC8265: ${{ secrets.AC8265 }}
@@ -33,15 +34,17 @@ jobs:
                   s = p.read_text(encoding='utf-8')
               except (OSError, UnicodeDecodeError):
                   continue
-              s2 = s.replace('<!-- da321a926d89a17c8862116fde8280 -->', gm)
-              s2 = s2.replace('<!-- 8a09ae8e5c42d07b99 -->', bm)
+              s2 = s
+              if gm:
+                  s2 = s2.replace('<!-- f3dbb4be6594a62b8b3b1a36a82c0b80c2e1d1c0 -->', gm)
+              if bm:
+                  s2 = s2.replace('<!-- 9ed1839ca3d2b8622a896f373791c8b7392409f10043bc95 -->', bm)
               if s2 != s:
                   p.write_text(s2, encoding='utf-8')
                   count += 1
-          if count == 0:
+          if count == 0 and (gm or bm):
               sys.exit(1)
           "
-      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
